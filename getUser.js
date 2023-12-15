@@ -4,14 +4,19 @@ async function getByEmail(email, callback) {
     const transformRequest = (jsonData = {}) => Object.entries(jsonData).map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
     const axios = require("axios");
     const getToken = async () => {
-
-        const url = "https://login.microsoftonline.com/pushpb2c.onmicrosoft.com/oauth2/v2.0/token";
+    // set the url
+    const url = "https://login.microsoftonline.com/pushpb2c.onmicrosoft.com/oauth2/v2.0/token";
+    // set the client id
+    const clientId = "";
+    // set the client secret
+    const clientSecret = "";
+    
 
         const input = {
             "grant_type": "client_credentials",
-            "client_id": "aef09705-7ba3-45d8-867c-468311736193",
+            "client_id": clientId,
             "scope": "https://graph.windows.net/.default",
-            "client_secret": "GKx7816lKrYHMRKrh0rhJDIvEb1Hs55Eh3fF298uarg=",
+            "client_secret": clientSecret,
             "audience": "https://graph.windows.net/"
         };
 

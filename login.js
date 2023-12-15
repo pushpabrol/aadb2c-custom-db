@@ -3,13 +3,17 @@ async function login(email, password, callback) {
   var jwt = require('jsonwebtoken');
   var request = require("request");
   const axios = require("axios");
+  // set the URL
+  const url = "https://pushpb2c.b2clogin.com/pushpb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_ropc_auth";
+  // set the client ID
+  const clientID = "";
+  const scope = `openid ${clientID} profile`
   
   const transformRequest = (jsonData = {}) => Object.entries(jsonData).map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
-const url = "https://pushpb2c.b2clogin.com/pushpb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_ropc_auth";
 
 var input = { 
-  client_id: '5dc7895f-c336-4805-b250-dd838d405923',
-  scope: 'openid 5dc7895f-c336-4805-b250-dd838d405923 profile',
+  client_id: clientID,
+  scope: scope,
   username: email,
   password: password,
   grant_type: 'password',
@@ -43,18 +47,3 @@ var input = {
 
 }
 
-
-  (async () => {
-    try {
-        const aadToken = await login('pushp.abrol@gmail.com','whats4@me', function(err,profile){
-
-          if(err) console.log(err);
-          else console.log(profile);
-        });
-        
-    } catch (e) {
-        // Deal with the fact the chain failed
-        console.log(e);
-    }
-})();
-  
